@@ -46,13 +46,19 @@ $ node
 > contractInstance = VotingContract.at(deployedContract.address)
 ```
 
-### Check your account
+### Check your Account
 ```
-> web3.eth.accounts 
+> web3.eth.accounts
 ```
 Replace output in [index.js line 6](https://github.com/NFhbar/votingDapp/blob/master/index.js#L6)
 
 ### To Run
-execute
+Execute:
 [index.html](https://github.com/NFhbar/votingDapp/blob/master/index.html)
 
+### Terminal
+To interact with the contract via terminal, type:
+```
+> contractInstance.
+```
+and press TAB to see list of possible commands.
