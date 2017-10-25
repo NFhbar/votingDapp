@@ -10,7 +10,7 @@ Original code by:
 Added a simple blockchain explorer for testrpc
 
 ## Install
-You need [npm](https://docs.npmjs.com/cli/install) and [node](https://nodejs.org/en/download/package-manager/).
+You need [npm](https://docs.npmjs.com/cli/install), [node](https://nodejs.org/en/download/package-manager/), and [solidity](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
 ### Testrpc
 In terminal:
@@ -27,7 +27,32 @@ cd into project folder
 $ node
 > Web3 = require('web3')
 > web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+```
 
+### Compile Contract
+```
+> code = fs.readFileSync('Voting.sol').toString()
+> solc = require('solc')
+> compiledCode = solc.compile(code)
+```
 
+### Deploy Contract
+```
+> abiDefinition = JSON.parse(compiledCode.contracts[':Voting'].interface)
+> VotingContract = web3.eth.contract(abiDefinition)
+> byteCode = compiledCode.contracts[':Voting'].bytecode
+> deployedContract = VotingContract.new(['Mada','Nick','Jay'],{data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+> deployedContract.address
+> contractInstance = VotingContract.at(deployedContract.address)
+```
 
+### Check your account
+```
+> web3.eth.accounts 
+```
+Replace output in [index.js line 6](https://github.com/NFhbar/votingDapp/blob/master/index.js#L6)
+
+### To Run
+execute
+[index.html](https://github.com/NFhbar/votingDapp/blob/master/index.html)
 
